@@ -1,0 +1,25 @@
+def naive_closest_pair(plane):
+    """
+    Find the closest pair of points in the plane using the brute
+    force approach
+
+    Args:
+        plane: List of points [(p1_x, p1_y), (p2_x, p2_y), ...]
+
+    Returns:
+        Distance between closest pair of points and closest pair
+        of points: [dist_bw_p1_p2, (p1_x, p1_y), (p2_x, p2_y)]
+    """
+    distmin=sys.maxsize
+    pointer1=0
+    while pointer1<len(plane)-1:
+        pointer2=pointer1+1
+        while pointer2<len(plane):
+            d=dist(plane[pointer1],plane[pointer2])
+            if d<distmin:
+                distmin=d
+                x1=plane[pointer1]
+                x2=plane[pointer2]
+            pointer2=pointer2+1
+        pointer1=pointer1+1
+    return (distmin,x1,x2)
