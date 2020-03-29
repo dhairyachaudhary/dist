@@ -1,0 +1,39 @@
+def efficient_closest_pair_routine(points):
+    """
+    This routine calls itself recursivly to find the closest pair of
+    points in the plane.
+
+    Args:
+        points: List of points sorted by X coordinate
+
+    Returns:
+        Distance between closest pair of points and closest pair
+        of points: [dist_bw_p1_p2, (p1_x, p1_y), (p2_x, p2_y)]
+    """
+    if (len(points)==2):
+        return (dist(points[0],points[1]),points[0],points[1]);
+
+    mid=int((len(points)+1)/2)
+
+    p1=points[:mid]
+    p2=points[mid-1:]
+
+    d1 = efficient_closest_pair_routine(p1)
+    d2 = efficient_closest_pair_routine(p2)
+
+    if (d1[0]<d2[0]):
+        d=d1
+    else:
+        d=d2
+
+    strip=[]
+    a=0
+    while a<len(points):
+        if abs(points[mid][0]-points[a][0])<=d[0]:
+            strip.append(points[a])
+        a=a+1
+    dstrip=(closest_pair_in_strip(strip,d[0]))
+    if dstrip==-1:
+        return d
+    else:
+        return dstrip
