@@ -1,13 +1,3 @@
-"""
-CSE101: Introduction to Programming
-Assignment 3
-
-Name        : Dhairya
-Roll-no     : 2019035
-"""
-
-
-
 import math
 import random
 import sys
